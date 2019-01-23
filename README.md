@@ -15,5 +15,11 @@ npm init -y
 npm install webpack webpack-cli --save-dev
 ```
 
-
+```bash
+cd imagemin
+# npm init -y
+npm install imagemin --save
+npm install imagemin-pngquant --save
+npm install --save png-to-jpeg
+```
 
