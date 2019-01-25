@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+  <head>
+    <meta charset="utf-8" />
+    <title>WebSocket Test</title>
+  </head>
+  <body>
+    <h2>WebSocket Test</h2>
+  
+    <div id="output"></div>
+  
+    <script language="javascript" type="text/javascript">
+  
+    var wsUri = "wss://echo.websocket.org/";
+    var output;
+  
+    function init() {
+      console.log("••• init() called");
+      output = document.getElementById("output");
+      testWebSocket();
+    }
+  
+    function testWebSocket() {
+      console.log("••• testWebSocket() called");
+      websocket = new WebSocket(wsUri);
+      websocket.onopen = function(evt) { onOpen(evt) };
+      websocket.onclose = function(evt) { onClose(evt) };
+      websocket.onmessage = function(evt) { onMessage(evt) };
+      websocket.onerror = function(evt) { onError(evt) };
+    }
+  
+    function onOpen(evt) {
+      console.log("••• onOpen() called");
+      console.log(evt);
+      console.log("••• evt.target.readyState = " + evt.target.readyState);
+      writeToScreen("CONNECTED");
+      doSend("WebSocket rocks");
+    }
+
+    function onClose(evt) {
+      console.log("••• onClose() called");
+      console.log(evt);
+      console.log("••• evt.target.readyState = " + evt.target.readyState);
+      writeToScreen("DISCONNECTED");
+    }
+  
+    function onMessage(evt) {
+      console.log("••• onMessage() called");
+      console.log(evt);
+      console.log("••• evt.target.readyState = " + evt.target.readyState);
+      console.log("••• evt.data = '" + evt.data + "', type = " + (typeof evt.data));
+      writeToScreen('<span style="color: blue;">RESPONSE: ' + evt.data + '</span>');
+      websocket.close();
+    }
+  
+    function onError(evt) {
+      console.log("••• onError() called");
+      console.log(evt);
+      writeToScreen('<span style="color: red;">ERROR:</span> ' + evt.data);
+    }
+  
+    function doSend(message) {
+      console.log("••• doSend() called");
+      console.log(message);
+      writeToScreen("SENT: " + message);
+      websocket.send(message);
+    }
+  
+    function writeToScreen(message) {
+      console.log("••• writeToScreen() called");
+      console.log(message);
+      var pre = document.createElement("p");
+      pre.style.wordWrap = "break-word";
+      pre.innerHTML = message;
+      output.appendChild(pre);
+    }
+
+    window.addEventListener("load", init, false);
+  
+    </script>
+  
+  </body>
+</html>
+
+
