@@ -5,7 +5,7 @@ const imageminPngquant = require('imagemin-pngquant');
 (async () => {
 	await imagemin(['images/*.png'], 'build/images', {
 		plugins: [
-			imageminPngquant()
+			imageminPngquant( { quality: [0.30, 0.40] } )
 		]
 	});
 
