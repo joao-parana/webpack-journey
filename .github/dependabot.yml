@@ -1,0 +1,26 @@
+version: 2
+updates:
+  # Configuração para dependências do Yarn
+  - package-ecosystem: "yarn"
+    directory: "/" # Diretório onde está o arquivo package.json
+    schedule:
+      interval: "daily" # Verificar atualizações diariamente
+    commit-message:
+      prefix: "chore(deps)"
+    open-pull-requests-limit: 10
+    labels:
+      - "dependencies"
+      - "automerge"
+
+  # Configuração para dependências do Webpack (se aplicável)
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly" # Verificar atualizações semanalmente
+    commit-message:
+      prefix: "chore(webpack)"
+    open-pull-requests-limit: 5
+    labels:
+      - "webpack"
+      - "dependencies"
+
