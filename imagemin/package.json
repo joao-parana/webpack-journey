@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "doIt.js",
   "dependencies": {
-    "imagemin": "^6.1.0",
+    "imagemin": "^9.0.1",
     "imagemin-pngquant": "^7.0.0",
     "png-to-jpeg": "^1.0.1"
   },
